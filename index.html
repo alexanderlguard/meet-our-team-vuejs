@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meet The Team</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+    
+    <section class="container"  id="app" >
+
+        <h2>Meet the team</h2>
+        <h4>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h4>
+
+        <article class="member-information" v-bind:class="{ 'show': showMemberInfo, 'show-content': showMemberInfoContent }">
+            <div class="separator"></div>
+            <div class="image">
+                <img class="test" v-bind:src="'img/' + member.img" v-if="showMemberInfo" :key="member.id">
+            </div>
+            <div class="content" :key="member.id">
+                <button class="btn-close" @click="closetab" v-if="showMemberInfoContent"><i class="far fa-times-circle"></i></button>
+                <div class="name"><p><span>{{ member.name }}</span></p> <p><span>{{ member.lastname }}</span></p> </div>
+                <p class="description">{{ member.description }}</p>
+            </div>
+            <p class="rol">{{ member.rol }}</p>
+        </article>
+
+        <article class="main mt-5">
+            <div class="row" v-bind:class="{ 'show-member': showMemberInfo, 'no-animation': noAnimation }"  v-bind:style="memberCardRowStyle">
+                <members-card v-for='member in members' v-bind:member='member' v-bind:key='member.id' v-on:selectmember="select" v-bind:show-member-info="showMemberInfo"/>
+            </div>
+        </article>
+
+        <button v-if="showMemberInfoContent" class="btn left" @click="leftArrow"><img src="img/leftt-arrow.png"></button>
+        <button v-if="showMemberInfoContent" class="btn right"  @click="rightArrow"><img src="img/right-arrow.png"></button>
+    </section>
+
+    <script type="text/javascript" src="js/vue.js"></script>
+    <script type="text/javascript" src="js/app.js" ></script>
+    <script src="https://kit.fontawesome.com/c6ddd65dd1.js" crossorigin="anonymous"></script>
+</body>
+</html>
